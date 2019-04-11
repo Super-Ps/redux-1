@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import {connect} from 'react-redux'
 import { PropTypes } from 'prop-types';
+import * as types from './actions'
 
+import {bindActionCreators} from 'redux'
 
 class App extends Component {
+
+
+  
+  
   render() {
+
+
+    const {increment,decrement} =this.props; // props {ctr: 500, user: "nimabi", increment: ƒ, decrement: ƒ}
+    console.log('props', this.props);
     return (
       <div className="container">
       <h1 className="jumbotron-heading text-center">{this.props.ctr}</h1>
       <div className="jumbotron-heading text-center"> {this.props.user}</div>
       <p className="text-center">
-        <button className="btn btn-primary mr-2" >Increase</button>
-        <button className="btn btn-danger my-2">Decrease</button>
+        <button onClick={()=>increment()} className="btn btn-primary mr-2" >Increase</button>
+        <button onClick={()=>decrement()} className="btn btn-danger my-2">Decrease</button>
       </p>
     </div>
     );
@@ -20,6 +30,8 @@ class App extends Component {
 }
 
 
+
+//notes1 创建一个函数，传递state参数，再将mapStateToProps 传递给connect，
 const mapStateToProps = (state)=>{
 
   console.log(state)
@@ -31,9 +43,21 @@ const mapStateToProps = (state)=>{
   }
 }
 
+//notes3 如果actions的方法很多，不可能沿用挨个传递的写法，所以
+// 可以全部导出actions 再用bindActionCreators ，绑定全部导出的action和despatch
+const mapDespatchToProps=(despatch)=>{
+
+  return bindActionCreators(types,despatch)
+}
+
+
 App.propTypes = {
   ctr: PropTypes.number.isRequired
 }
 
+//notes2 后面的参数属于mapDespatchToPorps，把despatch传递给connect,  表面上来看
+// 只需要把actions里面action 导出传进来就能直接从this。props解构出来 方法，再直接绑定点击事件
+// export default connect(mapStateToProps,{increment,decrement})(App);
 
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps,mapDespatchToProps)(App);

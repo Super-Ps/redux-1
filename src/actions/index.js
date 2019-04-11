@@ -13,3 +13,17 @@ export const  decrement =()=>{
         type: DECREMENT
     }
 }
+
+export const  increment2 =()=>{
+
+    return {
+        type:INCREMENT
+    }
+}
+
+export const  decrement2 =()=>{
+
+    return {
+        type: DECREMENT
+    }
+}
