@@ -1,7 +1,7 @@
 
 
 
-const counter= (state =100,action={})=>{
+const counter= (state =500,action={})=>{
 
         switch(action.type){
             case 'INCREMENT':
