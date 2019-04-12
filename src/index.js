@@ -41,10 +41,22 @@ const store=configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App></App>
+       <App></App>
     </Provider>,
     document.getElementById('root')
     );
+
+//热加载
+if (module.hot) {
+    module.hot.accept('./App', () => {
+      ReactDOM.render(
+        <Provider store={ store }>
+          <App />
+        </Provider>,
+        document.getElementById('root')
+      );
+    })
+  }
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
