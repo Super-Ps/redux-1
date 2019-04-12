@@ -2,6 +2,7 @@ import {INCREMENT,DECREMENT} from '../constants';
 
 //user
 import {AXIOS_USER_SUCCESS,AXIOS_USER_REQUEST,AXIOS_USER_FAIL} from '../constants'
+//import {LOAD_USER}  from '../constants'
 
 import axios from 'axios'
 
@@ -39,7 +40,7 @@ export const get_axios =()=>{
 
     return  dispatch =>{
         dispatch(axios_request())
-        axios.get("https://randomuser.me/api@/").then((res)=>
+        axios.get("https://randomuser.me/api/").then((res)=>
         {
                 dispatch( axios_user(res.data.results[0]) )
             }
@@ -49,6 +50,11 @@ export const get_axios =()=>{
             dispatch(axios_fail(error.response.data));
         })
     }
+//redux-promise-middleware 简化action
+    // return {
+    //     type:LOAD_USER,
+    //     payload: axios.get("https://randomuser.me/api/")
+    // }
 }
 
 

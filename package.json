@@ -11,13 +11,15 @@
     "react-redux": "^7.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "REACT_APP_DECORATORS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dist":"http-server build -a 127.0.0.1 -p 8080"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +29,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "redux-devtools-extension": "^2.13.8"
+  }
 }
