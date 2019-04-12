@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { PropTypes } from 'prop-types';
 import * as types from './actions'
 import {bindActionCreators} from 'redux'
-
+import  User from './components/User'
 
 
 //notes1 创建一个函数，传递state参数，再将mapStateToProps 传递给connect，
@@ -12,7 +12,7 @@ const mapStateToProps = (state)=>{
   console.log(state)
   return {
     ctr: state.ctr,
-    user:state.user
+    
   }
 }
 
@@ -38,12 +38,13 @@ class App extends Component {
     console.log('props', this.props);
     return (
       <div className="container">
-      <h1 className="jumbotron-heading text-center">{this.props.ctr}</h1>
-      <div className="jumbotron-heading text-center"> {this.props.user}</div>
-      <p className="text-center">
-        <button onClick={()=>increment()} className="btn btn-primary mr-2" >Increase</button>
-        <button onClick={()=>decrement()} className="btn btn-danger my-2">Decrease</button>
-      </p>
+        <h1 className="jumbotron-heading text-center">{this.props.ctr}</h1>
+        <div className="jumbotron-heading text-center"> {this.props.user}</div>
+        <p className="text-center">
+          <button onClick={()=>increment()} className="btn btn-primary mr-2" >Increase</button>
+          <button onClick={()=>decrement()} className="btn btn-danger my-2">Decrease</button>
+        </p>
+        <User />
     </div>
     );
   }

@@ -8,19 +8,20 @@ import {createStore,applyMiddleware} from 'redux';
 import rootReducer from './reducers'
 import {Provider} from 'react-redux'
 import  reduxlogger from 'redux-logger' // 第三方做的比较好的中间件
+import thunk from 'redux-thunk'
 
 
 // 自定义中间件
-const Logger= store=>next=>action=>{
-    console.log('dispatch',action)
-    let result =next(action); // 控制权交给下个中间件
-    console.log('next state', store.getState())
+// const Logger= store=>next=>action=>{
+//     console.log('dispatch',action)
+//     let result =next(action); // 控制权交给下个中间件
+//     console.log('next state', store.getState())
 
-    return result
-}
+//     return result
+// }
 
 
-const store = createStore(rootReducer,applyMiddleware(Logger,reduxlogger))
+const store = createStore(rootReducer,applyMiddleware(reduxlogger,thunk))
 
 
 //store.subscribe(()=> console.log("state update",store.getState()))
